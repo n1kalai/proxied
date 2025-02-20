@@ -5,7 +5,7 @@ import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
 
 import { LoadingSpinner } from '../loader';
-import { CartProductCard } from '@/app/cart/cart-item-card';
+import { CartProductCard } from '@/app/cart/components/cart-item-card';
 
 const sectionClassname =
   'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';

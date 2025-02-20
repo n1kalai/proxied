@@ -10,7 +10,7 @@ export const AddToCartBtn = ({ productId }: { productId: string }) => {
 
   const handleAddToCart = async () => {
     try {
-      const { data } = await addItem({
+      await addItem({
         variables: {
           input: {
             productId,
@@ -32,8 +32,6 @@ export const AddToCartBtn = ({ productId }: { productId: string }) => {
           });
         },
       });
-
-      console.log('data', data);
     } catch (err) {
       toast({
         title: 'Failed to add item',

@@ -4,8 +4,8 @@ export const RemoveFromCartIcon = () => (
     fill="#000000"
     version="1.1"
     id="Capa_1"
-    width="40px"
-    height="40px"
+    width="30px"
+    height="30px"
     viewBox="0 0 466.653 466.653"
     className="cart-svg"
   >

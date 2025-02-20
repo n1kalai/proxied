@@ -15,8 +15,9 @@ export const CartProductCard = ({
   item: CartItemType;
 }) => {
   const {
-    product: { _id, title, cost, availableQuantity },
+    product: { title, cost, availableQuantity },
     quantity,
+    _id,
   } = item;
 
   return (
