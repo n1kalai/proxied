@@ -1,34 +1,18 @@
 "use client"; 
 
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
 import { Cart } from "./cart";
 
-const REGISTER_MUTATION = gql`
-  mutation Register {
-    register {
-      _id
-      token
-      cartId
-    }
-  }
-`;
+import { useMutation } from "@apollo/client";
+import { useUser } from "@/hooks/use-user";
 
-type InitialState = {
-  isLoading: boolean;
-  data: string | null;
-}
+import { REGISTER_MUTATION } from "@/services/mutations/register-mutations";
+
+
 
 export const UserPage = () => { 
     const [register, { loading, error }] = useMutation(REGISTER_MUTATION);
-    const [visitorToken, setVisitorToken] = useState<InitialState>({isLoading: true, data: null});
+    const {user, setUser} = useUser()
 
-    useEffect(() => {
-      const storedToken = localStorage.getItem("visitorToken");
-      if(storedToken) {
-        setVisitorToken({isLoading: false, data: storedToken});
-      }
-    }, []);
   
     const handleRegister = async () => {
       try {
@@ -37,19 +21,19 @@ export const UserPage = () => {
   
         // Store token in localStorage
         localStorage.setItem("visitorToken", token);
-        setVisitorToken(token);
+        setUser({isLoading: false, data: token});
       } catch (err) {
         console.error("Registration failed", err);
       }
     };
 
 
-  if(visitorToken.isLoading) return <p>Loading...</p>
+  if(user.isLoading) return <p>Loading...</p>
 
 
   return (
     <div>
-      {visitorToken ? (
+      {user.data ? (
         <Cart />
       ) : (
         <>
