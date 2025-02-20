@@ -4,7 +4,6 @@ import { UserContext } from "@/context/user-context";
 import { use, useEffect } from "react";
 
 
-
 export const useUser = () => {
     const { user, setUser} = use(UserContext)
 
