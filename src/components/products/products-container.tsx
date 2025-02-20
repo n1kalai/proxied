@@ -15,7 +15,7 @@ export const ProductsContainer = ({
   title: string;
 }) => {
   return (
-    <section className="flex flex-col items-start justify-start gap-2 xl:gap-4 relative">
+    <section className="flex flex-1 flex-col items-start justify-start gap-2 xl:gap-4 relative">
       <h2 className="font-bold text-xl">{title}</h2>
       <section className={sectionClassname}>
         {loading ? (
