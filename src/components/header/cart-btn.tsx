@@ -12,9 +12,7 @@ import { Badge } from '../badge';
 
 export const CartBtn = () => {
   const { user } = useUser();
-  const { data } = useQuery<CartResponseType>(GET_CART_QUERY, {
-    fetchPolicy: 'network-only', // Always fetch fresh data
-  });
+  const { data } = useQuery<CartResponseType>(GET_CART_QUERY);
 
   return (
     user.data && (

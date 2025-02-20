@@ -11,9 +11,7 @@ const sectionClassname =
   'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
 
 export function Cart() {
-  const { data, loading, error } = useQuery<CartResponseType>(GET_CART_QUERY, {
-    fetchPolicy: 'network-only', // Always fetch fresh data
-  });
+  const { data, loading, error } = useQuery<CartResponseType>(GET_CART_QUERY);
 
   const total = () => {
     if (!data?.getCart?.items?.length) return [];
