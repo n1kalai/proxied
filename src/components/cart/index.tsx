@@ -4,26 +4,25 @@ import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
 import { ProductCard } from '../products/product-card';
+import { LoadingSpinner } from '../loader';
+
+const sectionClassname =
+  'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
 
 export function Cart() {
   const { data, loading, error } = useQuery<CartResponseType>(GET_CART_QUERY, {
     fetchPolicy: 'network-only', // Always fetch fresh data
   });
 
-  if (loading) return <p>Loading cart...</p>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error loading cart</p>;
 
   if (!data?.getCart?.items?.length) return <p>No cart items</p>;
 
   return (
-    <div>
+    <div className={sectionClassname}>
       {data.getCart.items.map((item) => (
-        <ProductCard
-          key={item._id}
-          cost={item.product.cost}
-          title={item.product.title}
-          id={item.product._id}
-        />
+        <ProductCard item={item} key={item._id} remove />
       ))}
     </div>
   );

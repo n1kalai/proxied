@@ -70,3 +70,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.cart-svg {
+  width: 28px !important;
+  height: 28px !important;
+}
