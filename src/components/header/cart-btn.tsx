@@ -1,16 +1,34 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { CartIcon } from "../icons/cart-svg"
-import { Button } from "../ui/button"
-import { useUser } from "@/hooks/use-user"
+import Link from 'next/link';
+import { CartIcon } from '../icons/cart-svg';
+import { Button } from '../ui/button';
+import { useUser } from '@/hooks/use-user';
+
+import { useQuery } from '@apollo/client';
+import { CartResponseType } from '@/types/cart/cart-type';
+import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
+import { Badge } from '../badge';
 
 export const CartBtn = () => {
-    const {user} = useUser()
-    
-    return (user.data && <Button variant="outline" size="icon" asChild>
-                <Link href="/cart">
-                    <CartIcon />
-                </Link>
-        </Button>)
-}
+  const { user } = useUser();
+  const { data } = useQuery<CartResponseType>(GET_CART_QUERY, {
+    fetchPolicy: 'network-only', // Always fetch fresh data
+  });
+
+  return (
+    user.data && (
+      <div className="relative">
+        <Button variant="outline" size="icon" asChild>
+          <Link href="/cart">
+            <CartIcon />
+          </Link>
+        </Button>
+
+        {Boolean(data?.getCart?.items?.length) && (
+          <Badge content={data?.getCart.items.length || 0} />
+        )}
+      </div>
+    )
+  );
+};
