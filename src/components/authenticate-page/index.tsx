@@ -1,7 +1,7 @@
 "use client"
 
 import { useUser } from "@/hooks/use-user"
-import { LoadingSpinner } from "../loader"
+
 import { ReactNode } from "react"
 import { NotLoggedInScreen } from "./not-logged-in"
 
@@ -9,7 +9,7 @@ export default function AuthenticatePage({children: children}: {children: ReactN
     const {user} = useUser()
 
     if (user.isLoading) {
-        return <LoadingSpinner />
+        return null
     }
     
     if(!user.isLoading && !user.data) {
