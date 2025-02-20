@@ -3,8 +3,9 @@
 import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
-import { ProductCard } from '../products/product-card';
+
 import { LoadingSpinner } from '../loader';
+import { CartProductCard } from '@/app/cart/cart-item-card';
 
 const sectionClassname =
   'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
@@ -22,7 +23,7 @@ export function Cart() {
   return (
     <div className={sectionClassname}>
       {data.getCart.items.map((item) => (
-        <ProductCard item={item} key={item._id} remove />
+        <CartProductCard item={item} key={item._id} remove />
       ))}
     </div>
   );

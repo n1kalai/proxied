@@ -22,12 +22,7 @@ export const ProductsContainer = ({
           <LoadingSpinner />
         ) : (
           data?.map((product) => (
-            <ProductCard
-              key={product._id}
-              title={product.title}
-              cost={product.cost}
-              id={product._id}
-            />
+            <ProductCard key={product._id} product={product} />
           ))
         )}
       </section>

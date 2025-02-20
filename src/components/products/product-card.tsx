@@ -1,3 +1,4 @@
+import { ProductType } from '@/types/product-type';
 import {
   Card,
   CardDescription,
@@ -6,20 +7,15 @@ import {
   CardTitle,
 } from '../ui/card';
 import { AddToCartBtn } from './add-to-cart-btn';
-import { RemoveFromCartFooter } from './remove-from-cart-btn';
-import { CartItemType } from '@/types/cart/cart-item-type';
 
 export const ProductCard = ({
-  remove = false,
-  item,
+  product,
 }: {
   remove?: boolean;
-  item: CartItemType;
+  product: ProductType;
 }) => {
-  const {
-    product: { _id, title, cost, availableQuantity },
-    quantity,
-  } = item;
+  const { _id, title, cost } = product;
+
   return (
     <Card className="flex flex-col justify-between">
       <CardHeader>
@@ -28,15 +24,7 @@ export const ProductCard = ({
       </CardHeader>
 
       <CardFooter className="flex justify-end">
-        {remove ? (
-          <RemoveFromCartFooter
-            productId={_id}
-            max={availableQuantity}
-            initialValue={quantity}
-          />
-        ) : (
-          <AddToCartBtn productId={_id} />
-        )}
+        <AddToCartBtn productId={_id} />
       </CardFooter>
     </Card>
   );
