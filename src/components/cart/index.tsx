@@ -15,16 +15,35 @@ export function Cart() {
     fetchPolicy: 'network-only', // Always fetch fresh data
   });
 
+  const total = () => {
+    if (!data?.getCart?.items?.length) return [];
+
+    const totalPrice = data.getCart.items.reduce((acc, item) => {
+      return acc + item.product.cost * item.quantity;
+    }, 0);
+
+    const formattedPrice = totalPrice.toFixed(2);
+
+    return formattedPrice;
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <p>Error loading cart</p>;
 
   if (!data?.getCart?.items?.length) return <p>No cart items</p>;
 
   return (
-    <div className={sectionClassname}>
-      {data.getCart.items.map((item) => (
-        <CartProductCard item={item} key={item._id} remove />
-      ))}
-    </div>
+    <section className="flex flex-col items-start justify-start gap-2 lg:gap-6">
+      <header>
+        <h2 className="font-bold text-xl">My cart items</h2>
+        <p>Total: {total()}$</p>
+      </header>
+
+      <div className={sectionClassname}>
+        {data.getCart.items.map((item) => (
+          <CartProductCard item={item} key={item._id} remove />
+        ))}
+      </div>
+    </section>
   );
 }
