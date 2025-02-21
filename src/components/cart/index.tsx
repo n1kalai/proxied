@@ -1,6 +1,6 @@
 'use client';
 
-import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
+import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
 

@@ -1,4 +1,4 @@
-import { REMOVE_ITEM_MUTATION } from '@/services/mutations/remove-cart-item';
+import { REMOVE_ITEM_MUTATION } from '@/graphql/mutations/remove-cart-item';
 import { useMutation } from '@apollo/client';
 import { useToast } from './use-toast';
 

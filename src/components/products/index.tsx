@@ -1,6 +1,6 @@
 'use client';
 
-import { GET_PRODUCTS_QUERY } from '@/services/queries/get-products-query';
+import { GET_PRODUCTS_QUERY } from '@/graphql/queries/get-products-query';
 import { useQuery } from '@apollo/client';
 
 import { GetProductsType } from '@/types/product-type';

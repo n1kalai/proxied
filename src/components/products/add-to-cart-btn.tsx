@@ -1,4 +1,4 @@
-import { ADD_CART_ITEM_MUTATION } from '@/services/mutations/add-cart-item-mutation';
+import { ADD_CART_ITEM_MUTATION } from '@/graphql/mutations/add-cart-item-mutation';
 import { useMutation } from '@apollo/client';
 import { Button } from '../ui/button';
 import { AddToCartIcon } from '../icons/add-to-cart';

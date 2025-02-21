@@ -7,7 +7,7 @@ import { useUser } from '@/hooks/use-user';
 
 import { useQuery } from '@apollo/client';
 import { CartResponseType } from '@/types/cart/cart-type';
-import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
+import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
 import { Badge } from '../badge';
 
 export const CartBtn = () => {
