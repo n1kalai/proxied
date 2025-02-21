@@ -9,6 +9,7 @@ import { UPDATE_ITEM_QUANTITY_MUTATION } from '@/services/mutations/update-cart-
 import { GET_CART_QUERY } from '@/services/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { CartItemType } from '@/types/cart/cart-item-type';
+import { validateRemoveItem, validateUpdateItemQuantity } from '@/validations';
 
 export const RemoveFromCartFooter = ({
   productId,
@@ -64,6 +65,8 @@ export const RemoveFromCartFooter = ({
   const { toast } = useToast();
 
   const handleItemIncrement = () => {
+    if (!validateUpdateItemQuantity(productId, 1)) return;
+
     updateItemQuantity({
       variables: {
         input: { cartItemId: productId, quantity: initialValue + 1 },
@@ -72,6 +75,8 @@ export const RemoveFromCartFooter = ({
   };
 
   const handleItemDecrement = () => {
+    if (!validateUpdateItemQuantity(productId, 1)) return;
+
     updateItemQuantity({
       variables: {
         input: { cartItemId: productId, quantity: initialValue - 1 },
@@ -80,6 +85,8 @@ export const RemoveFromCartFooter = ({
   };
 
   const handleRemoveFromCart = async () => {
+    if (!validateRemoveItem(productId)) return;
+
     try {
       await removeItem({
         variables: {

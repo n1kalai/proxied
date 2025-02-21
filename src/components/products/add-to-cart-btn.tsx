@@ -5,12 +5,15 @@ import { AddToCartIcon } from '../icons/add-to-cart';
 import { useToast } from '@/hooks/use-toast';
 import { ToastAction } from '../ui/toast';
 import Link from 'next/link';
+import { validateAddItem } from '@/validations';
 
 export const AddToCartBtn = ({ productId }: { productId: string }) => {
   const [addItem] = useMutation(ADD_CART_ITEM_MUTATION);
   const { toast } = useToast();
 
   const handleAddToCart = async () => {
+    if (!validateAddItem(productId, 1)) return;
+
     try {
       await addItem({
         variables: {
