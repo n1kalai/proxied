@@ -41,8 +41,8 @@ const wsLink =
             console.log('onNonLazyError', error);
           },
           connectionParams: {
-            authorization: localStorage.getItem('visitorToken')
-              ? `Bearer ${localStorage.getItem('visitorToken')}`
+            authToken: localStorage.getItem('visitorToken')
+              ? `${localStorage.getItem('visitorToken')}`
               : '',
           },
         }),
