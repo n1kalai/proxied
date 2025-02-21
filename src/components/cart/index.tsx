@@ -16,11 +16,7 @@ export function Cart() {
   const { data, loading, error, refetch } =
     useQuery<CartResponseType>(GET_CART_QUERY);
 
-  const { data: subscriptionData, error: wsError } = useSubscription(
-    CART_ITEM_SUBSCRIPTION,
-  );
-
-  console.log('wsError', wsError);
+  const { data: subscriptionData } = useSubscription(CART_ITEM_SUBSCRIPTION);
 
   const [cartItems, setCartItems] = useState(data?.getCart?.items || []);
 
@@ -32,6 +28,10 @@ export function Cart() {
 
   useEffect(() => {
     console.log('subscriptionData', subscriptionData);
+
+    // TODO: check if item out of stock is inside cart and show alert
+    // TODO: check if updated item quantity is inside cart and is updated correctly and show alert
+
     if (subscriptionData?.cartItemUpdate) {
       const { event, payload } = subscriptionData.cartItemUpdate;
 
@@ -62,7 +62,11 @@ export function Cart() {
   };
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <p>Error loading cart</p>;
+  if (error) {
+    console.log('Err', error);
+
+    return <p>Error loading cart</p>;
+  }
 
   if (!data?.getCart?.items?.length) return <p>No cart items</p>;
 

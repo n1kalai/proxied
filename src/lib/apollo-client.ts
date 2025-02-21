@@ -72,8 +72,20 @@ export const client = new ApolloClient({
       Cart: {
         fields: {
           items: {
-            merge(_existing = [], incoming) {
+            merge(_existing, incoming) {
               return incoming; // Replace the existing items array with the new one
+            },
+          },
+        },
+      },
+      CartItem: {
+        fields: {
+          product: {
+            merge(existing, incoming) {
+              console.log('existing', existing);
+              console.log('incoming', incoming);
+
+              return incoming; // Customize as needed
             },
           },
         },
