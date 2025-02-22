@@ -74,3 +74,12 @@ body {
   width: 28px !important;
   height: 28px !important;
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,15 +1,16 @@
 import { useRemoveItem } from '@/hooks/use-remove-item';
 
-import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { RemoveFromCartIcon } from '../icons/remove-from-cart';
-import { NumberButtonGroup } from '../ui/button-group';
+
 import { useMutation } from '@apollo/client';
 import { UPDATE_ITEM_QUANTITY_MUTATION } from '@/graphql/mutations/update-cart-item-amount';
 import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { CartItemType } from '@/types/cart/cart-item-type';
 import { validateRemoveItem, validateUpdateItemQuantity } from '@/validations';
+import { NumberButtonGroup } from '@/components/ui/button-group';
+import { Button } from '@/components/ui/button';
+import { RemoveFromCartIcon } from '@/components/icons/remove-from-cart';
 
 export const RemoveFromCartFooter = ({
   productId,

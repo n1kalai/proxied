@@ -1,9 +1,9 @@
 import { ADD_CART_ITEM_MUTATION } from '@/graphql/mutations/add-cart-item-mutation';
 import { useMutation } from '@apollo/client';
-import { Button } from '../ui/button';
-import { AddToCartIcon } from '../icons/add-to-cart';
+import { Button } from '../../ui/button';
+import { AddToCartIcon } from '../../icons/add-to-cart';
 import { useToast } from '@/hooks/use-toast';
-import { ToastAction } from '../ui/toast';
+import { ToastAction } from '../../ui/toast';
 import Link from 'next/link';
 import { validateAddItem } from '@/validations';
 

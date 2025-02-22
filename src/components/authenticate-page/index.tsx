@@ -1,20 +1,24 @@
-"use client"
+'use client';
 
-import { useUser } from "@/hooks/use-user"
+import { useUser } from '@/hooks/use-user';
 
-import { ReactNode } from "react"
-import { NotLoggedInScreen } from "./not-logged-in"
+import { ReactNode } from 'react';
+import { NotLoggedInScreen } from './components/not-logged-in';
 
-export default function AuthenticatePage({children: children}: {children: ReactNode}) {
-    const {user} = useUser()
+export default function AuthenticatePage({
+  children: children,
+}: {
+  children: ReactNode;
+}) {
+  const { user } = useUser();
 
-    if (user.isLoading) {
-        return null
-    }
-    
-    if(!user.isLoading && !user.data) {
-        return <NotLoggedInScreen />
-    }
+  if (user.isLoading) {
+    return null;
+  }
 
-    return children
+  if (!user.isLoading && !user.data) {
+    return <NotLoggedInScreen />;
+  }
+
+  return children;
 }
