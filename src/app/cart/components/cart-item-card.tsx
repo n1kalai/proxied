@@ -1,4 +1,4 @@
-import { RemoveFromCartFooter } from '@/components/products/components/remove-from-cart-btn';
+import { RemoveFromCartFooter } from '@/components/products/remove-from-cart-btn';
 import {
   Card,
   CardDescription,
@@ -8,7 +8,12 @@ import {
 } from '@/components/ui/card';
 import { CartItemType } from '@/types/cart/cart-item-type';
 
-export const CartProductCard = ({ item }: { item: CartItemType }) => {
+export const CartProductCard = ({
+  item,
+}: {
+  remove?: boolean;
+  item: CartItemType;
+}) => {
   const {
     product: { title, cost, availableQuantity },
     quantity,

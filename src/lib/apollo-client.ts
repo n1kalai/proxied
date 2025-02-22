@@ -81,7 +81,10 @@ export const client = new ApolloClient({
       CartItem: {
         fields: {
           product: {
-            merge(_existing, incoming) {
+            merge(existing, incoming) {
+              console.log('existing', existing);
+              console.log('incoming', incoming);
+
               return incoming; // Customize as needed
             },
           },
