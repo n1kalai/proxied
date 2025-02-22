@@ -4,12 +4,13 @@ import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
 
-import { LoadingSpinner } from '../loader';
 import { CartProductCard } from '@/components/cart/components/cart-item-card';
 
 import { useEffect, useState } from 'react';
 import { Payload, useCartSubscription } from '@/hooks/use-subscription';
 import { ConditionalDialog } from '../dialog';
+import { ProductsContainerSkeleton } from '../products/components/container-skeleton';
+import { Skeleton } from '../ui/skeleton';
 
 const sectionClassname =
   'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
@@ -31,8 +32,6 @@ export function Cart() {
       } else if (event === 'ITEM_QUANTITY_UPDATED') {
         setUpdatedItems((pre) => [...pre, { ...payload }]);
       }
-
-      refetch();
     }
   }, [subscriptionData, refetch]);
 
@@ -48,30 +47,38 @@ export function Cart() {
     return formattedPrice;
   };
 
-  if (loading) return <LoadingSpinner />;
   if (error) {
     return <p>Error loading cart</p>;
   }
 
-  if (!data?.getCart?.items?.length) return <p>No cart items</p>;
+  if (!loading && !data?.getCart?.items?.length) return <p>No cart items</p>;
 
   return (
     <>
-      <section className="flex flex-col items-start justify-start gap-2 lg:gap-6">
+      <section className="flex flex-col items-start justify-start gap-2 lg:gap-6 w-full">
         <header>
           <h2 className="font-bold text-xl">My cart items</h2>
-          <p>Total: {total()}$</p>
+          <div className="flex gap-1 items-center">
+            Total: {loading ? <Skeleton className="h-4 w-[40px]" /> : total()}$
+          </div>
         </header>
 
-        <div className={sectionClassname}>
-          {data.getCart.items.map((item) => (
-            <CartProductCard item={item} key={item._id + item.quantity} />
-          ))}
-        </div>
+        {loading ? (
+          <ProductsContainerSkeleton className="h-[170px]" />
+        ) : (
+          <div className={sectionClassname}>
+            {data?.getCart.items.map((item) => (
+              <CartProductCard item={item} key={item._id + item.quantity} />
+            ))}
+          </div>
+        )}
       </section>
       <ConditionalDialog
         data={updatedItems}
-        onClose={() => setUpdatedItems([])}
+        onClose={() => {
+          setUpdatedItems([]);
+          refetch();
+        }}
       />
     </>
   );
