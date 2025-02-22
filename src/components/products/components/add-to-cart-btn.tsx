@@ -1,11 +1,13 @@
 import { ADD_CART_ITEM_MUTATION } from '@/graphql/mutations/add-cart-item-mutation';
 import { useMutation } from '@apollo/client';
-import { Button } from '../../ui/button';
-import { AddToCartIcon } from '../../icons/add-to-cart';
+
 import { useToast } from '@/hooks/use-toast';
-import { ToastAction } from '../../ui/toast';
+
 import Link from 'next/link';
 import { validateAddItem } from '@/validations';
+import { ToastAction } from '@radix-ui/react-toast';
+import { Button } from '@/components/ui/button';
+import { AddToCartIcon } from '@/components/icons/add-to-cart';
 
 export const AddToCartBtn = ({ productId }: { productId: string }) => {
   const [addItem] = useMutation(ADD_CART_ITEM_MUTATION);
