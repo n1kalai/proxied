@@ -10,6 +10,7 @@ import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
 import { CartResponseType } from '@/types/cart/cart-type';
 import { useMemo } from 'react';
 import { ProductsContainerSkeleton } from './components/container-skeleton';
+import { Heading } from '../global/heading';
 
 const sectionClassname =
   'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
@@ -30,7 +31,7 @@ export const Products = () => {
 
   return (
     <section className="flex flex-1 flex-col items-start justify-start gap-2 xl:gap-4 relative">
-      <h2 className="font-bold text-xl">Products</h2>
+      <Heading>Products</Heading>
 
       {loading ? (
         <ProductsContainerSkeleton />
