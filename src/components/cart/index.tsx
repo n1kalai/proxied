@@ -5,7 +5,7 @@ import { CartResponseType } from '@/types/cart/cart-type';
 import { useQuery } from '@apollo/client';
 
 import { LoadingSpinner } from '../loader';
-import { CartProductCard } from '@/app/cart/components/cart-item-card';
+import { CartProductCard } from '@/components/cart/components/cart-item-card';
 
 import { useEffect, useState } from 'react';
 import { Payload, useCartSubscription } from '@/hooks/use-subscription';
