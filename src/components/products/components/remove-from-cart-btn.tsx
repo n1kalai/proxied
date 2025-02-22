@@ -1,14 +1,12 @@
 import { useRemoveItem } from '@/hooks/use-remove-item';
 
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { RemoveFromCartIcon } from '../icons/remove-from-cart';
-import { NumberButtonGroup } from '../ui/button-group';
+import { RemoveFromCartIcon } from '../../icons/remove-from-cart';
+import { NumberButtonGroup } from '../../ui/button-group';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ITEM_QUANTITY_MUTATION } from '@/graphql/mutations/update-cart-item-amount';
-import { GET_CART_QUERY } from '@/graphql/queries/get-cart-query';
-import { CartResponseType } from '@/types/cart/cart-type';
-import { CartItemType } from '@/types/cart/cart-item-type';
+
 import { validateRemoveItem, validateUpdateItemQuantity } from '@/validations';
 
 export const RemoveFromCartFooter = ({
@@ -27,37 +25,6 @@ export const RemoveFromCartFooter = ({
     {
       onError: (error) => {
         console.error('Error updating quantity:', error.message);
-      },
-      update: (cache, { data }) => {
-        if (!data) return;
-
-        // Get existing cart data from cache
-        const existingCart = cache.readQuery({
-          query: GET_CART_QUERY,
-        }) as CartResponseType;
-
-        if (existingCart && existingCart.getCart) {
-          // Update the items in the cart
-          const updatedCart = {
-            ...existingCart.getCart,
-            items: existingCart.getCart.items.map((item) =>
-              item._id === productId
-                ? {
-                    ...item,
-                    quantity: data.updateItemQuantity.items.find(
-                      (i: CartItemType) => i._id === productId,
-                    )?.quantity,
-                  }
-                : item,
-            ),
-          };
-
-          // Write the updated cart back to the cache
-          cache.writeQuery({
-            query: GET_CART_QUERY,
-            data: { getCart: updatedCart },
-          });
-        }
       },
     },
   );

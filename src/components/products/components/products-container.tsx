@@ -1,5 +1,5 @@
 import { ProductType } from '@/types/product-type';
-import { LoadingSpinner } from '../loader';
+import { LoadingSpinner } from '../../loader';
 import { ProductCard } from './product-card';
 
 const sectionClassname =
