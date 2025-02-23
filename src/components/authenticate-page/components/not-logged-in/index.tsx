@@ -31,14 +31,19 @@ export const NotLoggedInScreen = () => {
   };
 
   return (
-    <Card className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <Card
+      data-testid="not-logged-in"
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
       <CardHeader>
         <CardTitle>Not logged in</CardTitle>
         <CardDescription>Please login to continue</CardDescription>
       </CardHeader>
 
       <CardFooter>
-        <Button onClick={handleRegister}>Log in</Button>
+        <Button data-testid="login-button" onClick={handleRegister}>
+          Log in
+        </Button>
       </CardFooter>
     </Card>
   );
