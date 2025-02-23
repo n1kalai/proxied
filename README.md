@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proxied
 
-## Getting Started
+This project integrates Apollo Client for auth, state management, GraphQL queries. The application includes a cart system with cache management and real-time updates. It also features a comprehensive testing setup using Jest and React Testing Library to ensure application reliability. Additionally, Zod is used for schema validation to maintain data integrity.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+git clone https://github.com/n1kalai/proxied.git
+cd proxied
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running Tests
 
-## Learn More
+```sh
+npm run test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Token for tests 🪙
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I have declared constat **token** at the very beginning of each test file, if tests are not passed, please provide real token instead of mine. for me it works for now ..
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+#### Project works without problems with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##### Node v20.10.0
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+##### NPM v10.2.3
+
+---
+
+proxied/
+│── tests / # Test files
+│── src/components/ # Reusable React components
+│── src/pages/ # Next.js pages
+│── src/graphql/ # GraphQL queries, mutations and subscriptions
+│── src/hooks/ # Custom hooks
+│── src/context/ # for context file of user
+│── src/types/ # For typescript types
+│── jest.config.ts # Jest configuration
+
+## Contact
+
+If you have any questions, please reach out via email: **nikoloz.palagashvili@gmail.com**
