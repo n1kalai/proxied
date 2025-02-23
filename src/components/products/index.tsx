@@ -12,9 +12,6 @@ import { useMemo } from 'react';
 import { ProductsContainerSkeleton } from './components/container-skeleton';
 import { Heading } from '../global/heading';
 
-const sectionClassname =
-  'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
-
 export const Products = () => {
   const { data, loading } = useQuery<GetProductsType>(GET_PRODUCTS_QUERY);
   const { data: cartData } = useQuery<CartResponseType>(GET_CART_QUERY);
@@ -36,7 +33,7 @@ export const Products = () => {
       {loading ? (
         <ProductsContainerSkeleton />
       ) : (
-        <section className={sectionClassname}>
+        <section className="sectionClassname">
           {data?.getProducts?.products.map((product) => {
             return (
               <ProductCard

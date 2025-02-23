@@ -14,11 +14,9 @@ import { Skeleton } from '../ui/skeleton';
 import { getCartTotal } from '@/lib/get-cart-total';
 import { CartContainerSkeleton } from '../products/components/cart-container-skeleton';
 
-const sectionClassname =
-  'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 w-full';
-
 export function Cart() {
-  const { data, loading, error } = useQuery<CartResponseType>(GET_CART_QUERY);
+  const { data, loading, error, refetch } =
+    useQuery<CartResponseType>(GET_CART_QUERY);
   const { data: subscriptionData } = useCartSubscription();
   const total = getCartTotal(data?.getCart?.items || []);
 
@@ -55,7 +53,7 @@ export function Cart() {
         {loading ? (
           <CartContainerSkeleton />
         ) : (
-          <div className={sectionClassname}>
+          <div className="sectionClassname">
             {data?.getCart.items.map((item) => (
               <CartProductCard item={item} key={item._id + item.quantity} />
             ))}
@@ -65,6 +63,7 @@ export function Cart() {
       <ConditionalDialog
         data={updatedItems}
         onClose={() => {
+          refetch();
           setUpdatedItems([]);
         }}
       />
