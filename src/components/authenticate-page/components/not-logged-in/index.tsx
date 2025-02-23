@@ -24,6 +24,7 @@ export const NotLoggedInScreen = () => {
 
       // Store token in localStorage
       localStorage.setItem('visitorToken', token);
+
       setUser({ isLoading: false, data: token });
     } catch (err) {
       console.error('Registration failed', err);

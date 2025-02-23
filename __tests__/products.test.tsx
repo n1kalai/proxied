@@ -60,8 +60,20 @@ describe('Products Component', () => {
         </MockedProvider>,
       );
     });
-
     expect(screen.getByTestId('not-logged-in')).toBeInTheDocument();
+  });
+
+  it('should render login button', async () => {
+    await act(async () => {
+      render(
+        <MockedProvider mocks={mutationMocks} addTypename={false}>
+          <Page />
+        </MockedProvider>,
+      );
+    });
+
+    const loginButton = screen.getByRole('button', { name: /log in/i });
+    expect(loginButton).toBeInTheDocument();
   });
 
   it('renders skeleton if authorized and loading data', async () => {
@@ -70,7 +82,6 @@ describe('Products Component', () => {
         <Products />
       </MockedProvider>,
     );
-
     expect(screen.getByTestId('loading-skeleton')).toBeInTheDocument();
   });
 });
